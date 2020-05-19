@@ -14,7 +14,9 @@
 
     <q-drawer show-if-above v-model="left" side="left" bordered>
       <!-- drawer content -->
-      <router-view />
+      <leftDrawer>
+        나는 슬롯이에요
+      </leftDrawer>
     </q-drawer>
 
     <q-page-container>
@@ -35,12 +37,14 @@
 
 <script>
 // import EssentialLink from 'components/EssentialLink'
+import leftDrawer from "../pages/Drawer.vue";
 
 export default {
   name: "MainLayout",
 
   components: {
     // EssentialLink
+    leftDrawer
   },
 
   data() {

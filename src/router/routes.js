@@ -6,11 +6,6 @@ const routes = [
       { path: "", component: () => import("pages/Index.vue") },
       { path: "/diary", component: () => import("pages/DiaryList.vue") }
     ]
-  },
-  {
-    path: "/drawer",
-    component: () => import("layouts/MainLayout.vue"),
-    children: [{ path: "", component: () => import("pages/Drawer.vue") }]
   }
 ];
 
