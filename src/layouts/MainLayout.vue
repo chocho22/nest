@@ -1,22 +1,77 @@
 <template>
   <q-layout view="hHh LpR fff">
-    <q-header elevated class="bg-primary text-white">
+    <q-header elevated class="bg-cyan-8 text-white">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="left = !left" />
 
         <q-toolbar-title>
           <q-avatar>
             <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" />
-          </q-avatar>안녕하세여
+          </q-avatar>블로그
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
-    <q-drawer show-if-above v-model="left" side="left" bordered>
-      <!-- drawer content -->
-      <leftDrawer>
-        나는 슬롯이에요
-      </leftDrawer>
+    <q-drawer show-if-above v-model="left" side="left" bordered :width="300" :breakpoint="400">
+      <q-scroll-area
+        style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd"
+      >
+        <q-list padding>
+          <q-item clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="pets" />
+            </q-item-section>
+
+            <q-item-section>about</q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="photo_library" />
+            </q-item-section>
+
+            <q-item-section>diary</q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="shopping_cart" />
+            </q-item-section>
+
+            <q-item-section>shopping</q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="account_balance" />
+            </q-item-section>
+
+            <q-item-section>freeboard</q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="emoji_people" />
+            </q-item-section>
+
+            <q-item-section>cho</q-item-section>
+          </q-item>
+        </q-list>
+      </q-scroll-area>
+
+      <q-img
+        class="absolute-top"
+        src="https://cdn.quasar.dev/img/material.png"
+        style="height: 150px"
+      >
+        <div class="absolute-bottom bg-transparent">
+          <q-avatar size="56px" class="q-mb-sm">
+            <img src="~assets/고양이.jpg" />
+          </q-avatar>
+          <div class="text-weight-bold">siri siwoo</div>
+          <div>crisoberyl@naver.com</div>
+        </div>
+      </q-img>
     </q-drawer>
 
     <q-page-container>
@@ -37,14 +92,12 @@
 
 <script>
 // import EssentialLink from 'components/EssentialLink'
-import leftDrawer from "../pages/Drawer.vue";
 
 export default {
   name: "MainLayout",
 
   components: {
     // EssentialLink
-    leftDrawer
   },
 
   data() {
