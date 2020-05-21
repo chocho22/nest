@@ -1,42 +1,23 @@
 <template>
-  <div class="q-px-lg q-pb-md">
-    <q-timeline color="secondary">
-      <q-timeline-entry heading>Timeline heading</q-timeline-entry>
+  <div>
+    <div class="q-pa-xl q-pb-md q-mx-auto float-left" style="width:500px;">
+      <q-card clickable class="my-card">
+        <q-img src="~assets/cat/시리.jpg" basic>
+          <div class="absolute-bottom text-h6">시리</div>
+        </q-img>
 
-      <q-timeline-entry title="시리1" subtitle="February 22, 1986">
-        <div>시리1</div>
-      </q-timeline-entry>
+        <q-card-section>{{ siri }}</q-card-section>
+      </q-card>
+    </div>
+    <div class="q-pa-xl q-pb-md q-mx-auto" style="width:500px; display:inline-block;">
+      <q-card clickable class="my-card">
+        <q-img src="~assets/cat/시우.jpg" basic>
+          <div class="absolute-bottom text-h6">시우</div>
+        </q-img>
 
-      <q-timeline-entry title="시우1" subtitle="February 21, 1986" icon="delete">
-        <div>시우1</div>
-      </q-timeline-entry>
-
-      <q-timeline-entry heading>May, 2020</q-timeline-entry>
-
-      <q-timeline-entry
-        title="시리2"
-        subtitle="February 22, 1986"
-        avatar="https://cdn.quasar.dev/img/avatar2.jpg"
-      >
-        <div>시리2</div>
-      </q-timeline-entry>
-
-      <q-timeline-entry title="시우2" subtitle="February 22, 1986">
-        <div>시우2</div>
-      </q-timeline-entry>
-
-      <q-timeline-entry title="시우3" subtitle="February 22, 1986" color="orange" icon="done_all">
-        <div>시우3</div>
-      </q-timeline-entry>
-
-      <q-timeline-entry title="시리3" subtitle="February 22, 1986">
-        <div>시리3</div>
-      </q-timeline-entry>
-
-      <q-timeline-entry title="시우4" subtitle="February 22, 1986">
-        <div>시우4</div>
-      </q-timeline-entry>
-    </q-timeline>
+        <q-card-section>{{ siwoo }}</q-card-section>
+      </q-card>
+    </div>
   </div>
 </template>
 
@@ -45,6 +26,12 @@ export default {
   name: "PageIndex",
   created() {
     console.log(this.$route.params);
+  },
+  data() {
+    return {
+      siri: "시리,,,넌 너무 말이 많아,,",
+      siwoo: "가정일찐 시우,,,,"
+    };
   }
 };
 </script>

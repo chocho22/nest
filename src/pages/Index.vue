@@ -50,9 +50,4 @@ export default {
 </script>
 
 <style lang="scss">
-.background {
-  width: 100%;
-  height: 100%;
-  // background-image: url("~assets/고양이.jpg");
-}
 </style>

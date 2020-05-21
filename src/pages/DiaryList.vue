@@ -1,6 +1,9 @@
 <template>
   <div class="q-pa-md">
-    <q-table title="Treats" :data="data" :columns="columns" row-key="name" />
+    <q-table title="Diary" :data="data" :columns="columns" row-key="name" />
+    <div class="q-gutter-md">
+      <q-date v-model="date" :events="eventsFn" />
+    </div>
   </div>
 </template>
 
@@ -14,143 +17,150 @@ export default {
     return {
       columns: [
         {
-          name: "name",
+          name: "idx",
           required: true,
-          label: "Dessert (100g serving)",
+          label: "No.",
           align: "left",
-          field: row => row.name,
+          field: row => row.idx,
           format: val => `${val}`,
           sortable: true
         },
         {
-          name: "calories",
+          name: "Title",
           align: "center",
-          label: "Calories",
-          field: "calories",
+          label: "Title",
+          field: "Title",
           sortable: true
         },
-        { name: "fat", label: "Fat (g)", field: "fat", sortable: true },
-        { name: "carbs", label: "Carbs (g)", field: "carbs" },
-        { name: "protein", label: "Protein (g)", field: "protein" },
-        { name: "sodium", label: "Sodium (mg)", field: "sodium" },
         {
-          name: "calcium",
-          label: "Calcium (%)",
-          field: "calcium",
-          sortable: true,
-          sort: (a, b) => parseInt(a, 10) - parseInt(b, 10)
+          name: "Writer",
+          label: "Writer",
+          field: "Writer",
+          sortable: true
         },
         {
-          name: "iron",
-          label: "Iron (%)",
-          field: "iron",
-          sortable: true,
-          sort: (a, b) => parseInt(a, 10) - parseInt(b, 10)
+          name: "regDate",
+          label: "Date",
+          field: "regDate"
+        },
+        {
+          name: "view",
+          label: "view",
+          field: "view"
+        },
+        {
+          name: "like",
+          label: "like",
+          field: "like"
         }
       ],
       data: [
         {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          sodium: 87,
-          calcium: "14%",
-          iron: "1%"
+          idx: 12,
+          Title: "근황!!",
+          Writer: "cho",
+          regDate: "2020-05-21",
+          view: 0,
+          like: 1
         },
         {
-          name: "Ice cream sandwich",
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          sodium: 129,
-          calcium: "8%",
-          iron: "1%"
+          idx: 11,
+          Title: "잘 잔다~~~",
+          Writer: "cho",
+          regDate: "2020-05-21",
+          view: 0,
+          like: 0
         },
         {
-          name: "Eclair",
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          sodium: 337,
-          calcium: "6%",
-          iron: "7%"
+          idx: 10,
+          Title: "ㅎㅎㅎ귀요미",
+          Writer: "cho",
+          regDate: "2020-05-21",
+          view: 1,
+          like: 0
         },
         {
-          name: "Cupcake",
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-          sodium: 413,
-          calcium: "3%",
-          iron: "8%"
+          idx: 9,
+          Title: "시우의 패션쇼",
+          Writer: "cho",
+          regDate: "2020-05-21",
+          view: 9,
+          like: 1
         },
         {
-          name: "Gingerbread",
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-          sodium: 327,
-          calcium: "7%",
-          iron: "16%"
+          idx: 8,
+          Title: "자세 뭐야?",
+          Writer: "cho",
+          regDate: "2020-05-21",
+          view: 11,
+          like: 2
         },
         {
-          name: "Jelly bean",
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-          sodium: 50,
-          calcium: "0%",
-          iron: "0%"
+          idx: 7,
+          Title: "괜찮아~~!",
+          Writer: "cho",
+          regDate: "2020-05-21",
+          view: 6,
+          like: 0
         },
         {
-          name: "Lollipop",
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-          sodium: 38,
-          calcium: "0%",
-          iron: "2%"
+          idx: 6,
+          Title: "피곤해?",
+          Writer: "cho",
+          regDate: "2020-05-21",
+          view: 13,
+          like: 1
         },
         {
-          name: "Honeycomb",
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-          sodium: 562,
-          calcium: "0%",
-          iron: "45%"
+          idx: 5,
+          Title: "발바닥 맞대고있는 사진 올린다~~",
+          Writer: "cho",
+          regDate: "2020-05-21",
+          view: 21,
+          like: 2
         },
         {
-          name: "Donut",
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-          sodium: 326,
-          calcium: "2%",
-          iron: "22%"
+          idx: 4,
+          Title: "애기들 자는모습",
+          Writer: "cho",
+          regDate: "2020-05-21",
+          view: 19,
+          like: 1
         },
         {
-          name: "KitKat",
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-          sodium: 54,
-          calcium: "12%",
-          iron: "6%"
+          idx: 3,
+          Title: "시우는 너무 귀여워!!",
+          Writer: "cho",
+          regDate: "2020-05-21",
+          view: 27,
+          like: 3
+        },
+        {
+          idx: 2,
+          Title: "우리시리~~~",
+          Writer: "cho",
+          regDate: "2020-05-21",
+          view: 39,
+          like: 6
+        },
+        {
+          idx: 1,
+          Title: "첫 게시글!!",
+          Writer: "cho",
+          regDate: "2020-05-20",
+          view: 42,
+          like: 11
         }
-      ]
+      ],
+      date: "2020/05/21"
     };
+  },
+
+  methods: {
+    eventsFn(date) {
+      const parts = date.split("/");
+      return parts[2] % 2 === 0;
+    }
   }
 };
 </script>
