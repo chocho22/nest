@@ -3,13 +3,19 @@
     <q-header elevated class="bg-cyan-8 text-white">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="left = !left" />
-
-        <q-toolbar-title>
-          <q-avatar>
-            <!-- <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" /> -->
-            <q-icon name="pets" />
-          </q-avatar>블로그
-        </q-toolbar-title>
+        <a
+          type="button"
+          href="/"
+          role="link"
+          class="q-btn q-btn-item non-selectable no-outline quasar-logo text-bold q-btn--flat q-btn--rectangle q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase no-border-radius self-stretch"
+        >
+          <q-toolbar-title>
+            <q-avatar>
+              <q-icon name="pets" />
+            </q-avatar>
+            <span style="text-align:center; margin-left:5px;">blog</span>
+          </q-toolbar-title>
+        </a>
       </q-toolbar>
     </q-header>
 
