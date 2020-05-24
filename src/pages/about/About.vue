@@ -8,7 +8,7 @@
 
         <q-card-section>
           <ul>
-            <li v-for="siri in siris" v-bind:key="siri">{{ siri.cmt }}</li>
+            <li v-for="siri in siris" :key="siri.cmt">{{ siri.cmt }}</li>
           </ul>
         </q-card-section>
       </q-card>
@@ -21,7 +21,7 @@
 
         <q-card-section>
           <ul>
-            <li v-for="siwoo in siwoos" v-bind:key="siwoo">{{ siwoo.cmt }}</li>
+            <li v-for="siwoo in siwoos" :key="siwoo.cmt">{{ siwoo.cmt }}</li>
           </ul>
         </q-card-section>
       </q-card>

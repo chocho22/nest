@@ -4,11 +4,12 @@ const routes = [
     component: () => import("layouts/MainLayout.vue"),
     children: [
       { path: "", component: () => import("pages/Index.vue") },
-      { path: "/about", component: () => import("pages/About.vue") },
-      { path: "/diary", component: () => import("pages/DiaryList.vue") },
-      { path: "/shop", component: () => import("pages/Shopping.vue") },
-      { path: "/free", component: () => import("pages/FreeBoard.vue") },
-      { path: "/cho", component: () => import("pages/Cho.vue") }
+      { path: "/about", component: () => import("pages/about/About.vue") },
+      { path: "/diary", component: () => import("pages/diary/DiaryList.vue") },
+      { path: "/write", component: () => import("pages/Write.vue") },
+      { path: "/shop", component: () => import("pages/shopping/Shopping.vue") },
+      { path: "/free", component: () => import("pages/freeboard/FreeBoard.vue") },
+      { path: "/cho", component: () => import("pages/cho/Cho.vue") }
     ]
   }
 ];

@@ -1,10 +1,11 @@
 <template>
   <div class="q-pa-md q-ma-xl">
     <q-table title="Diary" :data="data" :columns="columns" row-key="name" class="q-table--flat" />
-    <q-btn color="secondary" label="POST" class="q-ma-auto q-mt-md float-right"></q-btn>
+    <q-btn color="secondary" label="POST" class="q-ma-auto q-mt-md float-right" to="/write"></q-btn>
     <!-- <div class="q-gutter-md">
       <q-date v-model="date" :events="eventsFn" />
     </div>-->
+    <router-view></router-view>
   </div>
 </template>
 
