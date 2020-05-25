@@ -4,7 +4,7 @@
     <!-- <div class="q-gutter-md">
       <q-date v-model="date" :events="eventsFn" />
     </div>-->
-    <quill></quill>  
+    <quill></quill>
   </div>
 </template>
 
