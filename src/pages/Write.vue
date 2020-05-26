@@ -15,7 +15,7 @@
         @change="onEditorChange($event)"
         style="
             width: 100%;
-            height: 400px;"
+            height: 350px;"
       />
     </div>
     <div class="q-pa-md q-ma-md" style="width: 100%;">
