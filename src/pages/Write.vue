@@ -19,7 +19,7 @@
       />
     </div>
     <div class="q-pa-md q-ma-md" style="width: 100%;">
-      <q-btn color="secondary" label="WRITE" class="q-ma-lg q-mt-xl float-right"></q-btn>
+      <q-btn color="secondary" label="WRITE" @click="posting()" class="q-ma-lg q-mt-xl float-right"></q-btn>
       <q-btn color="primary" label="LIST" class="q-ma-lg q-mt-xl float-left"></q-btn>
       <q-btn label="CANCEL" class="q-ma-lg q-mt-xl float-left"></q-btn>
     </div>
@@ -206,6 +206,27 @@ export default {
     //   const parts = date.split("/");
     //   return parts[2] % 2 === 0;
     // }
+
+    // vue 게시판 만들기 예제
+    // https://codesandbox.io/s/3v0m1?file=/src/components/board/BoardCreate.vue
+    posting() {
+      console.log("이제 포스팅을 해보자");
+      // const contentItems = data.Content.sort((a, b) => {
+      //   return b.content_id - a.content_id;
+      // });
+      // const content_id = contentItems[0].content_id + 1; // 마지막 데이터의 id + 1
+      // data.Content.push({
+      //   content_id: content_id,
+      //   user_id: this.user_id,
+      //   title: this.subject,
+      //   context: this.context,
+      //   created_at: this.created_at,
+      //   updated_at: this.updated_at
+      // });
+      // this.$router.push({
+      //   path: "/"
+      // });
+    }
   }
 };
 </script>
