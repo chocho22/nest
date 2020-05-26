@@ -1,11 +1,73 @@
 <template>
-  <div class="q-pa-md q-ma-xl">
-    <q-table title="Diary" :data="data" :columns="columns" row-key="name" class="q-table--flat" />
-    <q-btn color="secondary" label="POST" class="q-ma-auto q-mt-md float-right" to="/write"></q-btn>
-    <!-- <div class="q-gutter-md">
-      <q-date v-model="date" :events="eventsFn" />
+  <div>
+    <!-- <div style="float: right;">
+      <h3>Diary</h3>
+      <q-breadcrumbs></q-breadcrumbs>
     </div>-->
-    <router-view></router-view>
+    <div class="q-pa-md q-ma-xl">
+      <div>
+        <q-table
+          title="Diary"
+          :data="data"
+          :columns="columns"
+          row-key="name"
+          class="q-table--flat"
+        />
+        <q-card>
+          <q-card-section>안녕하세욘?</q-card-section>
+          <q-card-section>안녕하세욘?2</q-card-section>
+          <q-card-section>안녕하세욘?3</q-card-section>
+        </q-card>
+      </div>
+      <div style="width: 100%;">
+        <div class="float-left vertical-bottom">
+          <q-select style="width: 80px;" v-model="srchTp" :options="options" label="search type"></q-select>
+        </div>
+        <div class="float-left vertical-bottom">
+          <q-input v-model="srchType" style="width: 200px;"></q-input>
+        </div>
+        <div class="q-pa-md float-left vertical-bottom" style="max-width: 600px;">
+          <div class="float-left vertical-bottom">
+            <q-input
+              filled
+              v-model="stDate"
+              mask="date"
+              :rules="['date']"
+              class="float-left vertical-bottom"
+            >
+              <template v-slot:append>
+                <q-icon name="event" class="cursor-pointer">
+                  <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
+                    <q-date v-model="srchStDate" @input="() => $refs.qDateProxy.hide()" today-btn />
+                  </q-popup-proxy>
+                </q-icon>
+              </template>
+            </q-input>~
+          </div>
+          <div class="float-left vertical-bottom">
+            <q-input
+              filled
+              v-model="endDate"
+              mask="date"
+              :rules="['date']"
+              class="float-left vertical-bottom"
+            >
+              <template v-slot:append>
+                <q-icon name="event" class="cursor-pointer">
+                  <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
+                    <q-date v-model="srchEndDate" @input="() => $refs.qDateProxy.hide()" today-btn />
+                  </q-popup-proxy>
+                </q-icon>
+              </template>
+            </q-input>
+          </div>
+        </div>
+        <div class="q-mt-lg q-ml-xl float-left vertical-bottom">
+          <q-btn label="SEARCH"></q-btn>
+        </div>
+      </div>
+      <q-btn color="secondary" label="POST" class="q-ma-auto q-mt-lg float-right" to="/write"></q-btn>
+    </div>
   </div>
 </template>
 
@@ -17,6 +79,12 @@ export default {
   },
   data() {
     return {
+      srchType: "",
+      srchTp: "",
+      srchStDate: "",
+      srchEndDate: "",
+      stDate: "",
+      endDate: "",
       columns: [
         {
           name: "idx",
@@ -154,7 +222,25 @@ export default {
           like: 11
         }
       ],
-      date: "2020/05/21"
+      date: "2020/05/26",
+      options: [
+        {
+          label: "id",
+          value: "mbId"
+        },
+        {
+          label: "nick",
+          value: "mbNick"
+        },
+        {
+          label: "title",
+          value: "bdTitle"
+        },
+        {
+          label: "title + content",
+          value: "bdTitle,bdContent"
+        }
+      ]
     };
   },
 

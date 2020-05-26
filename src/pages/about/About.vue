@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="q-pa-xl q-pb-md float-left" style="width:400px;">
+  <div style="display: flex; flex-flow: row nowwrap; justify-content: space-evenly;">
+    <div class="q-pa-xl q-pb-md" style="width:400px;">
       <q-card class="my-card">
         <q-img src="~assets/cat/시리.jpg" basic>
           <div class="absolute-bottom text-h6">시리</div>
@@ -13,7 +13,7 @@
         </q-card-section>
       </q-card>
     </div>
-    <div class="q-pa-xl q-pb-md" style="width:400px; display:inline-block;">
+    <div class="q-pa-xl q-pb-md" style="width:400px;">
       <q-card class="my-card">
         <q-img src="~assets/cat/시우.jpg" basic>
           <div class="absolute-bottom text-h6">시우</div>

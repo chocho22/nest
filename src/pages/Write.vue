@@ -1,26 +1,54 @@
 <template>
-  <div class="q-pa-md q-ma-xl">
-    <q-btn color="secondary" label="WRITE" class="q-ma-auto q-mt-md float-right"></q-btn>
-    <!-- <div class="q-gutter-md">
-      <q-date v-model="date" :events="eventsFn" />
-    </div>-->
-    <quill></quill>  
+  <div class="q-px-md q-pb-md q-mx-md q-mb-md">
+    <div class="q-pa-md q-ma-md q-mb-xl" style="width: 100%;">
+      <div class="float-left vertical-bottom" style="width: 20%;">
+        <q-select v-model="bdType" :options="options" label="board type"></q-select>
+      </div>
+      <div class="float-left vertical-bottom" style="width: 80%;">
+        <q-input v-model="bdTitle" placeholder="제목을 입력해주세요."></q-input>
+      </div>
+    </div>
+    <div class="quill-editor q-pa-md q-ma-md" style="width: 100%;">
+      <quill-editor
+        :content="bdContent"
+        :options="editorOption"
+        @change="onEditorChange($event)"
+        style="
+            width: 100%;
+            height: 400px;"
+      />
+    </div>
+    <div class="q-pa-md q-ma-md" style="width: 100%;">
+      <q-btn color="secondary" label="WRITE" class="q-ma-lg q-mt-xl float-right"></q-btn>
+      <q-btn color="primary" label="LIST" class="q-ma-lg q-mt-xl float-left"></q-btn>
+      <q-btn label="CANCEL" class="q-ma-lg q-mt-xl float-left"></q-btn>
+    </div>
   </div>
 </template>
 
 <script>
-// 에디터 docs
-// https://quilljs.com/docs/configuration/
-import quill from 'quill';
+import "quill/dist/quill.core.css"; // import styles
+import "quill/dist/quill.snow.css"; // for snow theme
+import "quill/dist/quill.bubble.css"; // for bubble theme
+
+import { quillEditor } from "vue-quill-editor";
 
 export default {
   name: "PageIndex",
-  components: { quill },
+  components: { quillEditor },
   created() {
     console.log(this.$route.params);
   },
   data() {
     return {
+      bdType: "",
+      bdTitle: "",
+      bdContent: "",
+      mbId: "",
+      mbNick: "",
+      mbIp: "",
+      bdRegDt: null,
+      bdUdtDt: null,
       columns: [
         {
           name: "idx",
@@ -158,7 +186,18 @@ export default {
           like: 11
         }
       ],
-      date: "2020/05/21"
+      date: "2020/05/21",
+      options: [
+        {
+          label: "diary",
+          value: "1"
+        },
+        {
+          label: "free board",
+          value: "2"
+        }
+      ],
+      model: null
     };
   },
 
@@ -169,5 +208,10 @@ export default {
     // }
   }
 };
-
 </script>
+
+<style lang="stylus">
+q-select {
+  width: 200px;
+}
+</style>
