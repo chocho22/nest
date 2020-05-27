@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 import "quill/dist/quill.core.css"; // import styles
 import "quill/dist/quill.snow.css"; // for snow theme
 import "quill/dist/quill.bubble.css"; // for bubble theme
@@ -211,6 +213,24 @@ export default {
     // https://codesandbox.io/s/3v0m1?file=/src/components/board/BoardCreate.vue
     posting() {
       console.log("이제 포스팅을 해보자");
+      axios
+        .post("/api/board/add", {
+          bdType: this.bdType,
+          bdTitle: this.bdTitle,
+          bdContent: this.bdContent,
+          mbId: this.mbId,
+          mbNick: this.mbNick,
+          mbIp: this.mbIp,
+          bdRegDt: this.bdRegDt,
+          bdUdtDt: this.bdUdtDt
+        })
+        .then(response => {
+          console.warn(response);
+          this.result = response.data;
+        })
+        .catch(ex => {
+          console.warn("error : ", ex);
+        });
       // const contentItems = data.Content.sort((a, b) => {
       //   return b.content_id - a.content_id;
       // });
