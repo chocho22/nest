@@ -18,20 +18,12 @@
       </div>
       <div style="width: 100%;">
         <div class="float-left vertical-bottom">
-          <q-select
-            style="width: 80px;"
-            v-model="srchTp"
-            :options="options"
-            label="search type"
-          ></q-select>
+          <q-select style="width: 80px;" v-model="srchTp" :options="options" label="search type"></q-select>
         </div>
         <div class="float-left vertical-bottom">
           <q-input v-model="srchType" style="width: 200px;"></q-input>
         </div>
-        <div
-          class="q-pa-md float-left vertical-bottom"
-          style="max-width: 600px;"
-        >
+        <div class="q-pa-md float-left vertical-bottom" style="max-width: 600px;">
           <div class="float-left vertical-bottom">
             <q-input
               filled
@@ -42,20 +34,12 @@
             >
               <template v-slot:append>
                 <q-icon name="event" class="cursor-pointer">
-                  <q-popup-proxy
-                    ref="qDateProxy"
-                    transition-show="scale"
-                    transition-hide="scale"
-                  >
-                    <q-date
-                      v-model="srchStDate"
-                      @input="() => $refs.qDateProxy.hide()"
-                      today-btn
-                    />
+                  <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
+                    <q-date v-model="srchStDate" @input="() => $refs.qDateProxy.hide()" today-btn />
                   </q-popup-proxy>
                 </q-icon>
-              </template> </q-input
-            >~
+              </template>
+            </q-input>~
           </div>
           <div class="float-left vertical-bottom">
             <q-input
@@ -67,16 +51,8 @@
             >
               <template v-slot:append>
                 <q-icon name="event" class="cursor-pointer">
-                  <q-popup-proxy
-                    ref="qDateProxy"
-                    transition-show="scale"
-                    transition-hide="scale"
-                  >
-                    <q-date
-                      v-model="srchEndDate"
-                      @input="() => $refs.qDateProxy.hide()"
-                      today-btn
-                    />
+                  <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
+                    <q-date v-model="srchEndDate" @input="() => $refs.qDateProxy.hide()" today-btn />
                   </q-popup-proxy>
                 </q-icon>
               </template>
@@ -87,16 +63,7 @@
           <q-btn label="SEARCH"></q-btn>
         </div>
       </div>
-      <q-btn
-        color="secondary"
-        label="POST"
-        class="q-ma-auto q-mt-lg float-right"
-        to="/write"
-      ></q-btn>
-    </div>
-    <span>JSON 출력</span>
-    <div id="result" class="container">
-      <xmp> {{ result }} </xmp>
+      <q-btn color="secondary" label="POST" class="q-ma-auto q-mt-lg float-right" to="/write"></q-btn>
     </div>
   </div>
 </template>
@@ -109,6 +76,7 @@ export default {
   created() {
     // console.log(this.$route.params);
     this.result = this.getBoardList();
+    console.log("this.result ::: ", this.result);
   },
   data() {
     return {
@@ -122,14 +90,11 @@ export default {
       endDate: "",
       columns: [
         {
-          name: "idx",
-          required: true,
-          label: "No.",
+          name: "rownum",
           align: "left",
-          field: row => row.idx,
-          format: val => `${val}`,
-          sortable: true,
-          length: this.length
+          label: "No.",
+          field: "rownum",
+          sortable: true
         },
         {
           name: "bdTitle",
@@ -203,7 +168,13 @@ export default {
     },
 
     onRowClick() {
-      console.log("view는 아직 안했어");
+      console.log("view는 지금 하고있어");
+      console.log("this :: ", this);
+      console.log("this.result.bdNum :: ", this.result.bdNum);
+      console.log("this.result :: ", this.result);
+      this.$router.push({
+        path: `/board/view/${this.result.bdNum}`
+      });
     }
   }
 };

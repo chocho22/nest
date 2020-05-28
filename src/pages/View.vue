@@ -5,7 +5,7 @@
       <q-breadcrumbs></q-breadcrumbs>
     </div>-->
     <div class="q-pa-md q-ma-xl" style="height: 650px;">
-      <div>
+      <!-- <div>
         <q-card class="my-card">
           <q-card-section>
             <div class="text-h6">게시글 제목입니다.</div>
@@ -14,25 +14,22 @@
           </q-card-section>
 
           <q-card-section>
-            여기는 내용이 들어올 것입니다 ㅎㅎ<br/>
-            시리와 시우에 관한 내용이 주로 들어올 예정입니다 ㅎㅎ
-            여기는 내용이 들어올 것입니다 ㅎㅎ<br/>
-            시리와 시우에 관한 내용이 주로 들어올 예정입니다 ㅎㅎ
-            여기는 내용이 들어올 것입니다 ㅎㅎ<br/>
-            시리와 시우에 관한 내용이 주로 들어올 예정입니다 ㅎㅎ
-            여기는 내용이 들어올 것입니다 ㅎㅎ<br/>
+            여기는 내용이 들어올 것입니다 ㅎㅎ
+            <br />시리와 시우에 관한 내용이 주로 들어올 예정입니다 ㅎㅎ
+            여기는 내용이 들어올 것입니다 ㅎㅎ
+            <br />시리와 시우에 관한 내용이 주로 들어올 예정입니다 ㅎㅎ
+            여기는 내용이 들어올 것입니다 ㅎㅎ
+            <br />시리와 시우에 관한 내용이 주로 들어올 예정입니다 ㅎㅎ
+            여기는 내용이 들어올 것입니다 ㅎㅎ
+            <br />
           </q-card-section>
 
           <q-card-section>
-            <div class="text-subtitle2">
-              Comments
-            </div>
+            <div class="text-subtitle2">Comments</div>
           </q-card-section>
           <q-separator />
 
-          <q-card-section>
-            여기에 댓글을 보여줄 것입니다.
-          </q-card-section>
+          <q-card-section>여기에 댓글을 보여줄 것입니다.</q-card-section>
 
           <q-separator />
           <q-card-section class="q-pa-xl" style="width: 100%;">
@@ -43,13 +40,41 @@
               <q-btn flat label="REPLY"></q-btn>
             </div>
           </q-card-section>
-          <!-- <q-card-actions>
+          <q-card-actions>
             <q-btn flat>Action 1</q-btn>
             <q-btn flat>Action 2</q-btn>
-          </q-card-actions> -->
+          </q-card-actions>
         </q-card>
+      </div>-->
 
+      <div>
+        <q-table
+          title="Post"
+          :data="result"
+          :columns="columns"
+          row-key="name"
+          class="q-table--flat"
+          no-data-label="글이 없어요~ 글 주세요~"
+          @row-click="onRowClick()"
+        >
+          <template v-slot:body="props">
+            <q-tr :props="props">
+              <q-td key="rownum" :props="props">{{ props.row.rownum }}</q-td>
+              <q-td key="bdTitle" :props="props">{{ props.row.bdTitle }}</q-td>
+              <q-td key="bdRegDt" :props="props">{{ props.row.bdRegDt }}</q-td>
+              <q-td key="bdView" :props="props">{{ props.row.bdView }}</q-td>
+              <q-td key="bdLike" :props="props">{{ props.row.bdLike }}</q-td>
+            </q-tr>
+            <q-tr :props="props">
+              <q-td key="bdContent" :props="props">{{ props.row.bdContent }}</q-td>
+            </q-tr>
+            <q-tr :props="props">
+              <q-td key="bdContent" :props="props">{{ props.row.bdContent }}</q-td>
+            </q-tr>
+          </template>
+        </q-table>
       </div>
+
       <div>
         <q-btn color="primary" label="LIST" class="q-ma-auto q-mt-lg float-left" @click="goList()"></q-btn>
         <q-btn color="secondary" label="MODIFY" class="q-ma-auto q-mt-lg float-right" to="/write"></q-btn>
@@ -59,13 +84,19 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "PageIndex",
   created() {
     console.log(this.$route.params);
+    const boardNum = Number(this.$route.params.bdNum);
+    this.result = this.getView(boardNum);
   },
   data() {
     return {
+      result: null,
+      bdNum: "",
       cmtContent: "",
       columns: [
         {
@@ -143,6 +174,17 @@ export default {
     //   const parts = date.split("/");
     //   return parts[2] % 2 === 0;
     // }
+    getView(boardNum) {
+      axios
+        .get("http://localhost:8083/board/view/" + this.boardNum)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(e => {
+          console.log("error :: " + e);
+        });
+    },
+
     goList() {
       console.log("리스트 페이지로 갈것이야");
     }

@@ -8,7 +8,7 @@ const routes = [
       { path: "/diary", component: () => import("pages/diary/DiaryList.vue") },
       { path: "/write", component: () => import("pages/Write.vue") },
       {
-        path: "/view",
+        path: "/view/:bdNum",
         component: () => import("pages/View.vue")
       },
       { path: "/shop", component: () => import("pages/shopping/Shopping.vue") },

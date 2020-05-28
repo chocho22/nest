@@ -10,6 +10,7 @@
     </div>
     <div class="quill-editor q-pa-md q-ma-md" style="width: 100%;">
       <quill-editor
+        v-model="bdContent"
         :content="bdContent"
         :options="editorOption"
         @change="onEditorChange($event)"
@@ -20,8 +21,8 @@
     </div>
     <div class="q-pa-md q-ma-md" style="width: 100%;">
       <q-btn color="secondary" label="WRITE" @click="posting()" class="q-ma-lg q-mt-xl float-right"></q-btn>
-      <q-btn color="primary" label="LIST" class="q-ma-lg q-mt-xl float-left"></q-btn>
-      <q-btn label="CANCEL" class="q-ma-lg q-mt-xl float-left"></q-btn>
+      <q-btn color="primary" label="LIST" class="q-ma-lg q-mt-xl float-left" to="/diary"></q-btn>
+      <q-btn label="CANCEL" class="q-ma-lg q-mt-xl float-left" @click="$router.go(-1)"></q-btn>
     </div>
   </div>
 </template>
@@ -43,152 +44,18 @@ export default {
   },
   data() {
     return {
+      editorOption: {
+        // Some Quill options...
+      },
+
       bdType: "",
       bdTitle: "",
       bdContent: "",
       mbId: "",
       mbNick: "",
-      mbIp: "",
+      bdIp: "",
       bdRegDt: null,
       bdUdtDt: null,
-      columns: [
-        {
-          name: "idx",
-          required: true,
-          label: "No.",
-          align: "left",
-          field: row => row.idx,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "Title",
-          align: "center",
-          label: "Title",
-          field: "Title",
-          sortable: true
-        },
-        {
-          name: "Writer",
-          label: "Writer",
-          field: "Writer",
-          sortable: true
-        },
-        {
-          name: "regDate",
-          label: "Date",
-          field: "regDate"
-        },
-        {
-          name: "view",
-          label: "view",
-          field: "view"
-        },
-        {
-          name: "like",
-          label: "like",
-          field: "like"
-        }
-      ],
-      data: [
-        {
-          idx: 12,
-          Title: "근황!!",
-          Writer: "cho",
-          regDate: "2020-05-21",
-          view: 0,
-          like: 1
-        },
-        {
-          idx: 11,
-          Title: "잘 잔다~~~",
-          Writer: "cho",
-          regDate: "2020-05-21",
-          view: 0,
-          like: 0
-        },
-        {
-          idx: 10,
-          Title: "ㅎㅎㅎ귀요미",
-          Writer: "cho",
-          regDate: "2020-05-21",
-          view: 1,
-          like: 0
-        },
-        {
-          idx: 9,
-          Title: "시우의 패션쇼",
-          Writer: "cho",
-          regDate: "2020-05-21",
-          view: 9,
-          like: 1
-        },
-        {
-          idx: 8,
-          Title: "자세 뭐야?",
-          Writer: "cho",
-          regDate: "2020-05-21",
-          view: 11,
-          like: 2
-        },
-        {
-          idx: 7,
-          Title: "괜찮아~~!",
-          Writer: "cho",
-          regDate: "2020-05-21",
-          view: 6,
-          like: 0
-        },
-        {
-          idx: 6,
-          Title: "피곤해?",
-          Writer: "cho",
-          regDate: "2020-05-21",
-          view: 13,
-          like: 1
-        },
-        {
-          idx: 5,
-          Title: "발바닥 맞대고있는 사진 올린다~~",
-          Writer: "cho",
-          regDate: "2020-05-21",
-          view: 21,
-          like: 2
-        },
-        {
-          idx: 4,
-          Title: "애기들 자는모습",
-          Writer: "cho",
-          regDate: "2020-05-21",
-          view: 19,
-          like: 1
-        },
-        {
-          idx: 3,
-          Title: "시우는 너무 귀여워!!",
-          Writer: "cho",
-          regDate: "2020-05-21",
-          view: 27,
-          like: 3
-        },
-        {
-          idx: 2,
-          Title: "우리시리~~~",
-          Writer: "cho",
-          regDate: "2020-05-21",
-          view: 39,
-          like: 6
-        },
-        {
-          idx: 1,
-          Title: "첫 게시글!!",
-          Writer: "cho",
-          regDate: "2020-05-20",
-          view: 42,
-          like: 11
-        }
-      ],
-      date: "2020/05/21",
       options: [
         {
           label: "diary",
@@ -204,33 +71,79 @@ export default {
   },
 
   methods: {
-    // eventsFn(date) {
-    //   const parts = date.split("/");
-    //   return parts[2] % 2 === 0;
-    // }
+    onEditorBlur(quill) {
+      // console.log("editor blur!", quill);
+    },
+    onEditorFocus(quill) {
+      // console.log("editor focus!", quill);
+    },
+    onEditorReady(quill) {
+      // console.log("editor ready!", quill);
+    },
+    onEditorChange({ quill, html, text }) {
+      // console.log("editor change!", quill, html, text);
+      this.content = html;
+    },
 
     // vue 게시판 만들기 예제
     // https://codesandbox.io/s/3v0m1?file=/src/components/board/BoardCreate.vue
     posting() {
       console.log("이제 포스팅을 해보자");
-      axios
-        .post("/api/board/add", {
-          bdType: this.bdType,
-          bdTitle: this.bdTitle,
-          bdContent: this.bdContent,
-          mbId: this.mbId,
-          mbNick: this.mbNick,
-          mbIp: this.mbIp,
-          bdRegDt: this.bdRegDt,
-          bdUdtDt: this.bdUdtDt
-        })
-        .then(response => {
-          console.warn(response);
-          this.result = response.data;
-        })
-        .catch(ex => {
-          console.warn("error : ", ex);
-        });
+      console.log("$data :: ", this.$data);
+      const datas = {
+        bdType: this.bdType.value,
+        bdTitle: this.bdTitle,
+        bdContent: this.bdContent,
+        mbId: this.mbId,
+        mbNick: this.mbNick,
+        bdIp: this.bdIp,
+        bdRegDt: this.bdRegDt,
+        bdUdtDt: this.bdUdtDt
+      };
+      axios({
+        url: "http://localhost:8083/board/add",
+        method: "post",
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        data: JSON.stringify(datas),
+        success: res => {
+          if (res.result === "Y") {
+            alert("완료!!");
+            console.log(res);
+          } else {
+            alert("못함!!ㅠㅠㅠ");
+          }
+        },
+        error: e => {
+          alert("axios 실패!!");
+          console.log(e);
+        }
+      });
+      // axios
+      //   .post(
+      //     "http://localhost:8083/board/add",
+      //     // this.$data
+
+      //     // 이게 parameter가 되는건가...?? 그래서 get으로 가는건가...?????
+      //     {
+      //       bdType: this.bdType.value,
+      //       bdTitle: this.bdTitle,
+      //       bdContent: this.bdContent,
+      //       mbId: this.mbId,
+      //       mbNick: this.mbNick,
+      //       bdIp: this.bdIp,
+      //       bdRegDt: this.bdRegDt,
+      //       bdUdtDt: this.bdUdtDt
+      //     },
+      //      { headers: { 'Content-Type': 'application/json' } }
+      //   )
+      //   .then(response => {
+      //     alert("완료!");
+      //     console.warn(response);
+      //     this.result = response.data;
+      //   })
+      //   .catch(ex => {
+      //     console.warn("error : ", ex);
+      //   });
       // const contentItems = data.Content.sort((a, b) => {
       //   return b.content_id - a.content_id;
       // });
@@ -247,6 +160,44 @@ export default {
       //   path: "/"
       // });
     }
+    // posting() {
+    //   if (this.$route.params.seq) {
+    //     axios
+    //       .put(this.baseUrl + "/board/modify", this.$data)
+    //       .then(response => {
+    //         console.log(response);
+    //         this.$router.push("/board/view/" + this.$route.params.seq);
+    //       })
+    //       .catch(error => {
+    //         console.log(error);
+    //       });
+    //   } else {
+    //     this.$data.regDt = this.getNowDate();
+    //     this.$data.uptDt = this.getNowDate();
+    //     axios
+    //       .post(this.baseUrl + "/board/add", this.$data)
+    //       .then(response => {
+    //         console.log(response);
+    //         this.$router.push("/board");
+    //       })
+    //       .catch(error => {
+    //         console.log(error);
+    //       });
+    //   }
+    // },
+    // getNowDate() {
+    //   var nowDate = new Date();
+    //   var year = nowDate.getFullYear().toString();
+    //   var month = (nowDate.getMonth() + 1).toString();
+    //   var day = nowDate.getDate().toString();
+    //   return (
+    //     year +
+    //     "-" +
+    //     (month[1] ? month : "0" + month[0]) +
+    //     "-" +
+    //     (day[1] ? day : "0" + day[0])
+    //   );
+    // }
   }
 };
 </script>
