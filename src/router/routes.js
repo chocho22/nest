@@ -9,6 +9,7 @@ const routes = [
       { path: "/write", component: () => import("pages/Write.vue") },
       {
         path: "/view/:bdNum",
+        // path: "/view",
         component: () => import("pages/View.vue")
       },
       { path: "/shop", component: () => import("pages/shopping/Shopping.vue") },

@@ -81,7 +81,7 @@
       </q-img>
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container style="padding-bottom: 50px;">
       <router-view />
     </q-page-container>
 
@@ -95,6 +95,10 @@
         </q-toolbar-title>
       </q-toolbar>
     </q-footer>
+
+    <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
+      <q-btn fab icon="keyboard_arrow_up" color="primary" />
+    </q-page-scroller>
   </q-layout>
 </template>
 
@@ -116,3 +120,24 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus">
+html, body {
+  height: 100%;
+}
+
+q-header {
+  height: 50px;
+}
+
+q-footer {
+  position: relative;
+  height: 50px;
+  z-index: 1;
+}
+
+q-page-container {
+  margin: -50px 0 -50px;
+  min-height: 100%;
+}
+</style>

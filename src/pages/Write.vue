@@ -21,7 +21,12 @@
     </div>
     <div class="q-pa-md q-ma-md" style="width: 100%;">
       <q-btn color="secondary" label="WRITE" @click="posting()" class="q-ma-lg q-mt-xl float-right"></q-btn>
-      <q-btn color="primary" label="LIST" class="q-ma-lg q-mt-xl float-left" to="/diary"></q-btn>
+      <q-btn
+        color="primary"
+        label="LIST"
+        class="q-ma-lg q-mt-xl float-left"
+        @click="$router.go(-1)"
+      ></q-btn>
       <q-btn label="CANCEL" class="q-ma-lg q-mt-xl float-left" @click="$router.go(-1)"></q-btn>
     </div>
   </div>

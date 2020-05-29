@@ -13,28 +13,35 @@
           row-key="name"
           class="q-table--flat"
           no-data-label="글이 없어요~ 글 주세요~"
-          @row-click="onRowClick()"
+          @row-click="onRowClick"
         />
       </div>
-      <div style="width: 100%;">
-        <div class="float-left vertical-bottom">
-          <q-select style="width: 80px;" v-model="srchTp" :options="options" label="search type"></q-select>
+      <div class="search" style="width: 100%;">
+        <div class="float-left vertical-bottom" style="width: 10%;">
+          <q-select
+            style="min-width: 80px;"
+            v-model="srchTp"
+            :options="options"
+            label="search type"
+          ></q-select>
         </div>
-        <div class="float-left vertical-bottom">
-          <q-input v-model="srchType" style="width: 200px;"></q-input>
+        <div class="float-left vertical-bottom" style="width: 20%;">
+          <q-input v-model="srchType"></q-input>
         </div>
-        <div class="q-pa-md float-left vertical-bottom" style="max-width: 600px;">
+        <div class="q-pa-md float-left vertical-bottom" style="width: 43%;">
           <div class="float-left vertical-bottom">
+            <!-- TODO 얘 크기좀 줄이고싶은데 방법이 없나... -->
             <q-input
               filled
-              v-model="stDate"
+              v-model="srchStDate"
               mask="date"
-              :rules="['date']"
+              :rules="['srchStDate']"
               class="float-left vertical-bottom"
             >
               <template v-slot:append>
                 <q-icon name="event" class="cursor-pointer">
                   <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
+                    <!-- TODO 얘는 왜 선택을 해도 안닫힐까? end date는 닫히는데... -->
                     <q-date v-model="srchStDate" @input="() => $refs.qDateProxy.hide()" today-btn />
                   </q-popup-proxy>
                 </q-icon>
@@ -44,9 +51,9 @@
           <div class="float-left vertical-bottom">
             <q-input
               filled
-              v-model="endDate"
+              v-model="srchEndDate"
               mask="date"
-              :rules="['date']"
+              :rules="['srchEndDate']"
               class="float-left vertical-bottom"
             >
               <template v-slot:append>
@@ -59,7 +66,7 @@
             </q-input>
           </div>
         </div>
-        <div class="q-mt-lg q-ml-xl float-left vertical-bottom">
+        <div class="q-mt-lg float-left vertical-bottom">
           <q-btn label="SEARCH"></q-btn>
         </div>
       </div>
@@ -86,8 +93,6 @@ export default {
       srchTp: "",
       srchStDate: "",
       srchEndDate: "",
-      stDate: "",
-      endDate: "",
       columns: [
         {
           name: "rownum",
@@ -125,7 +130,6 @@ export default {
           field: "bdLike"
         }
       ],
-      // date: "2020/05/26",
       options: [
         {
           label: "id",
@@ -167,13 +171,9 @@ export default {
         });
     },
 
-    onRowClick() {
-      console.log("view는 지금 하고있어");
-      console.log("this :: ", this);
-      console.log("this.result.bdNum :: ", this.result.bdNum);
-      console.log("this.result :: ", this.result);
+    onRowClick(evt, row) {
       this.$router.push({
-        path: `/board/view/${this.result.bdNum}`
+        path: `/view/${row.bdNum}`
       });
     }
   }
