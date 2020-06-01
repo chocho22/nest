@@ -10,7 +10,7 @@
         <q-markup-table></q-markup-table>
       </q-page-container>-->
       <div>
-        <q-card flat class="my-card">
+        <q-card flat class="my-card" v-if="result">
           <q-card-section>
             <div class="text-h4">{{ result.bdTitle }}</div>
             <div class="text-h6">by {{ result.mbNick }}</div>
@@ -46,7 +46,9 @@
         </q-card>
         <div style="width: 100%;">
           <q-btn class="float-right q-ma-lg primary" label="LIST" @click="$router.go(-1)"></q-btn>
-          <q-btn class="float-right q-ma-lg" label="MODIFY" to="/write"></q-btn>
+          <q-btn class="float-right q-ma-lg" label="MODIFY" @click="goModify(result.bdNum)"></q-btn>
+          <!-- <q-btn class="float-right q-ma-lg" label="MODIFY2" @click="goModify2(result.bdNum)"></q-btn> -->
+          <q-btn class="float-right q-ma-lg" label="DELETE" @click="deleteBoard(result.bdNum)"></q-btn>
         </div>
       </div>
     </div>
@@ -59,56 +61,18 @@ import axios from "axios";
 export default {
   name: "PageIndex",
   created() {
-    console.log("this.$route.params.bdNum ::: " + this.$route.params.bdNum);
-    // this.bdNum = this.$route.params.name;
     this.result = this.getView(this.$route.params.bdNum);
-    console.log("this.result ::: " + this.result);
   },
   mounted() {},
 
   data() {
     return {
       result: null,
-      cmtContent: "",
-      columns: [
-        {
-          name: "idx",
-          required: true,
-          label: "No.",
-          align: "left",
-          field: row => row.idx,
-          format: val => `${val}`,
-          sortable: true
-        },
-        {
-          name: "Title",
-          align: "center",
-          label: "Title",
-          field: "bdTitle",
-          sortable: true
-        },
-        {
-          name: "Writer",
-          label: "Writer",
-          field: "bdWriter",
-          sortable: true
-        },
-        {
-          name: "regDate",
-          label: "Date",
-          field: "bdregDt"
-        },
-        {
-          name: "view",
-          label: "view",
-          field: "view"
-        },
-        {
-          name: "like",
-          label: "like",
-          field: "like"
-        }
-      ]
+      // bdTitle: null,
+      // mbNick: null,
+      // bdRegDt: null,
+      // bdContent: null,
+      cmtContent: null
     };
   },
 
@@ -121,12 +85,54 @@ export default {
       axios
         .get("http://localhost:8083/board/view/" + boardNum)
         .then(response => {
-          console.log("response :::: ", response);
-          console.log("response.data :::: ", response.data);
+          // console.log("response :::: ", response);
+          // console.log("response.data :::: ", response.data);
           this.result = response.data;
         })
         .catch(e => {
           console.log("error :: ", e);
+        });
+    },
+
+    goModify(bdNum) {
+      console.log("bdNum !!! ", bdNum);
+      console.log(this.$router);
+
+      this.$router.push({
+        name: "modify",
+        params: { bdNum: bdNum }
+        // path: `/`
+        // path: `/about`
+        // next() {}
+      });
+      console.log(this.$router);
+    },
+
+    // goModify2(bdNum) {
+    //   console.log("bdNum !!! ", bdNum);
+    //   console.log(this.$router);
+    //   this.$router.push({
+    //     // path: `/modify/${bdNum}`
+    //     path: `/`
+    //   });
+    //   console.log(this.$router);
+    // },
+
+    deleteBoard(boardNum) {
+      console.log("boardNum :: ", boardNum);
+      axios
+        .post("http://localhost:8083/board/delete/" + boardNum)
+        .then(response => {
+          console.log("response :: ", response);
+          if (response.data.success === "Y") {
+            alert("삭제 완료!!");
+            this.$router.go(-1);
+          } else {
+            alert("삭제 실패...");
+          }
+        })
+        .catch(e => {
+          console.log("error !!! :: ", e);
         });
     }
   }
