@@ -16,6 +16,13 @@
             <span style="text-align:center; margin-left:5px;">blog</span>
           </q-toolbar-title>
         </a>
+        <div style="width: 100%; position: absolute; margin-right: 20px; margin-bottom: 5px;">
+          <q-btn class="q-btn--flat" icon="person_add" label="join" to="/join" />
+          <q-btn class="q-btn--flat" icon="play_for_work" label="login" to="/login" />
+        </div>
+        <div style="position: absolute; margin-right: 20px;" hidden>
+          <q-btn class="q-btn--flat" icon="directions_run" label="logout" @click="goLogout()" />
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -117,6 +124,12 @@ export default {
       // leftDrawerOpen: false,
       left: false
     };
+  },
+
+  methods: {
+    goLogout() {
+      console.log("로그아웃을 해보자");
+    }
   }
 };
 </script>
@@ -132,7 +145,7 @@ q-header {
 
 q-footer {
   position: relative;
-  height: 50px;
+  height: 100px;
   z-index: 1;
 }
 

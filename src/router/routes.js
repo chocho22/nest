@@ -16,7 +16,7 @@ const routes = [
         component: () => import("pages/View.vue")
       },
       {
-        name: "modify",
+        // name: "modify",
         path: "/modify/:bdNum",
         component: () => import("pages/Modify.vue")
       },
@@ -25,7 +25,12 @@ const routes = [
         path: "/free",
         component: () => import("pages/freeboard/FreeBoard.vue")
       },
-      { path: "/cho", component: () => import("pages/cho/Cho.vue") }
+      { path: "/cho", component: () => import("pages/cho/Cho.vue") },
+      { path: "/join", component: () => import("pages/member/MemberJoin.vue") },
+      {
+        path: "/login",
+        component: () => import("pages/member/MemberLogin.vue")
+      }
     ]
   }
 ];

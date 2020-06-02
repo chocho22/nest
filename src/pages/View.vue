@@ -99,8 +99,9 @@ export default {
       console.log(this.$router);
 
       this.$router.push({
-        name: "modify",
-        params: { bdNum: bdNum }
+        // name: "modify",
+        // params: { bdNum: bdNum }
+        path: `/modify/${bdNum}`
         // path: `/`
         // path: `/about`
         // next() {}

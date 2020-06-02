@@ -71,6 +71,12 @@
         </div>
       </div>
       <q-btn color="secondary" label="POST" class="q-ma-auto q-mt-lg float-right" to="/write"></q-btn>
+      <q-btn
+        color="secondary"
+        label="MODIFY3"
+        class="q-ma-auto q-mt-lg float-right"
+        @clicik="goModifyPage()"
+      ></q-btn>
     </div>
   </div>
 </template>
@@ -175,6 +181,20 @@ export default {
       this.$router.push({
         path: `/view/${row.bdNum}`
       });
+      console.log(this.$router);
+    },
+    goModifyPage() {
+      this.$router.go("/about");
+      // console.log(this.$router);
+
+      // this.$router.push({
+      // name: "modify",
+      // params: { bdNum: 14 }
+      // path: `/modify/14`
+      // path: `/about`
+      // next() {}
+      // });
+      // console.log(this.$router);
     }
   }
 };
