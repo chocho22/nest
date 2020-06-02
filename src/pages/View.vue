@@ -56,8 +56,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: "PageIndex",
   created() {
@@ -82,7 +80,7 @@ export default {
     //   return parts[2] % 2 === 0;
     // }
     getView(boardNum) {
-      axios
+      this.$axios
         .get("http://localhost:8083/board/view/" + boardNum)
         .then(response => {
           // console.log("response :::: ", response);
@@ -96,17 +94,16 @@ export default {
 
     goModify(bdNum) {
       console.log("bdNum !!! ", bdNum);
-      console.log(this.$router);
-
-      this.$router.push({
-        // name: "modify",
-        // params: { bdNum: bdNum }
-        path: `/modify/${bdNum}`
-        // path: `/`
-        // path: `/about`
-        // next() {}
-      });
-      console.log(this.$router);
+      this.$router.push('/modify/' + bdNum).catch((err) => console.error(err));
+      // console.log(this.$router);
+      // this.$router.push({
+      //   // name: "modify",
+      //   // params: { bdNum: bdNum }
+      //   path: `/modify/${bdNum}`
+      //   // path: `/`
+      //   // path: `/about`
+      //   // next() {}
+      // });
     },
 
     // goModify2(bdNum) {
@@ -121,7 +118,7 @@ export default {
 
     deleteBoard(boardNum) {
       console.log("boardNum :: ", boardNum);
-      axios
+      this.$axios
         .post("http://localhost:8083/board/delete/" + boardNum)
         .then(response => {
           console.log("response :: ", response);

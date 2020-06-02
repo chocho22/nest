@@ -16,7 +16,6 @@ const routes = [
         component: () => import("pages/View.vue")
       },
       {
-        // name: "modify",
         path: "/modify/:bdNum",
         component: () => import("pages/Modify.vue")
       },

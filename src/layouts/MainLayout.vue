@@ -16,11 +16,11 @@
             <span style="text-align:center; margin-left:5px;">blog</span>
           </q-toolbar-title>
         </a>
-        <div style="width: 100%; position: absolute; margin-right: 20px; margin-bottom: 5px;">
+        <div style="position: absolute; right: 20px; bottom: 5px;">
           <q-btn class="q-btn--flat" icon="person_add" label="join" to="/join" />
           <q-btn class="q-btn--flat" icon="play_for_work" label="login" to="/login" />
         </div>
-        <div style="position: absolute; margin-right: 20px;" hidden>
+        <div style="position: absolute; right: 20px; bottom: 5px;" hidden>
           <q-btn class="q-btn--flat" icon="directions_run" label="logout" @click="goLogout()" />
         </div>
       </q-toolbar>
@@ -89,7 +89,7 @@
     </q-drawer>
 
     <q-page-container style="padding-bottom: 50px;">
-      <router-view />
+        <router-view />
     </q-page-container>
 
     <q-footer elevated class="bg-grey-8 text-white">

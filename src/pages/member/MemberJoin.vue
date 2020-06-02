@@ -21,8 +21,10 @@
       <div class="q-pa-sm float-left vertical-bottom" style="width: 100%;">
         <!-- TODO onkeyup으로 비밀번호 일치여부 조회 -->
         비밀번호 확인
-        <q-input type="password" v-model="mbPwd2" placeholder="비밀번호를 다시 한번 입력해주세요."></q-input>
-        <span class="text-red" hidden>비밀번호가 일치하지 않습니다.</span>
+        <q-input type="password" v-model="mbPwd2" placeholder="비밀번호를 다시 한번 입력해주세요."
+        @keyup="pwdCheck()"></q-input>
+        <span class="text-red" v-show="!isPwdMatch">비밀번호가 일치하지 않습니다.</span>
+        <span class="text-blue" v-show="isPwdMatch">비밀번호가 일치합니다.</span>
       </div>
       <div class="q-pa-sm float-left vertical-bottom" style="width: 100%;">
         <!-- TODO onkeyup으로 db 닉네임 중복 조회 -->
@@ -58,7 +60,8 @@ export default {
       mbId: "",
       mbPwd: "",
       mbPwd2: "",
-      mbNick: ""
+      mbNick: "",
+      isPwdMatch: false
     };
   },
 
@@ -93,6 +96,14 @@ export default {
       this.$router.push({
         path: "/"
       });
+    },
+
+    pwdCheck() {
+      if (this.mbPwd !== this.mbPwd2) {
+        this.isPwdMatch = false;
+      } else {
+        this.isPwdMatch = true;
+      }
     }
   }
 };

@@ -51,7 +51,7 @@ export default {
   components: { quillEditor },
   created() {
     console.log("this.$route.params.bdNum !!! ", this.$route.params.bdNum);
-    this.result = this.getView(this.$route.params.bdNum);
+    // this.result = this.getView(this.$route.params.bdNum);
   },
   data() {
     return {
