@@ -176,24 +176,35 @@ export default {
           console.log("error :: " + e);
         });
     },
+    cntBdView(bdNum) {
+      this.$axios
+        .post("http://localhost:8083/board/cntView/" + bdNum)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(e => {
+          console.log("error::: ", e);
+        });
+    },
 
     onRowClick(evt, row) {
+      this.cntBdView(row.bdNum);
       this.$router.push({
         path: `/view/${row.bdNum}`
       });
       console.log(this.$router);
     },
     goModifyPage() {
-      this.$router.go("/about");
-      // console.log(this.$router);
+      // this.$router.go("/about");
+      console.log(this.$router);
 
-      // this.$router.push({
-      // name: "modify",
-      // params: { bdNum: 14 }
-      // path: `/modify/14`
-      // path: `/about`
-      // next() {}
-      // });
+      this.$router.push({
+        // name: "modify",
+        // params: { bdNum: 14 }
+        path: `/modify`
+        // path: `/about`
+        // next() {}
+      });
       // console.log(this.$router);
     }
   }

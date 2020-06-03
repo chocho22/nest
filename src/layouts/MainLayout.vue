@@ -7,13 +7,13 @@
           type="button"
           href="/"
           role="link"
-          class="q-btn q-btn-item non-selectable no-outline quasar-logo text-bold q-btn--flat q-btn--rectangle q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase no-border-radius self-stretch"
+          class="q-btn q-btn-item non-selectable no-outline quasar-logo text-bold q-btn--flat q-btn--rectangle q-btn--actionable q-focusable q-btn--no-uppercase no-border-radius"
         >
           <q-toolbar-title>
             <q-avatar>
               <q-icon name="pets" />
             </q-avatar>
-            <span style="text-align:center; margin-left:5px;">blog</span>
+            <span style="text-align:center; margin-left:5px;">BLOG</span>
           </q-toolbar-title>
         </a>
         <div style="position: absolute; right: 20px; bottom: 5px;">
@@ -26,7 +26,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer show-if-above v-model="left" side="left" bordered :width="300" :breakpoint="400">
+    <q-drawer show-if-above v-model="left" side="left" bordered :width="250" :breakpoint="400">
       <q-scroll-area
         style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd"
       >
@@ -88,8 +88,8 @@
       </q-img>
     </q-drawer>
 
-    <q-page-container style="padding-bottom: 50px;">
-        <router-view />
+    <q-page-container>
+      <router-view />
     </q-page-container>
 
     <q-footer elevated class="bg-grey-8 text-white">
@@ -135,7 +135,7 @@ export default {
 </script>
 
 <style lang="stylus">
-html, body {
+template {
   height: 100%;
 }
 
@@ -144,13 +144,11 @@ q-header {
 }
 
 q-footer {
-  position: relative;
-  height: 100px;
-  z-index: 1;
+  height: 50px;
 }
 
 q-page-container {
-  margin: -50px 0 -50px;
-  min-height: 100%;
+  height: 100%;
+  margin: 50px 0 50px 0;
 }
 </style>

@@ -16,7 +16,7 @@ const routes = [
         component: () => import("pages/View.vue")
       },
       {
-        path: "/modify/:bdNum",
+        path: "/modify",
         component: () => import("pages/Modify.vue")
       },
       { path: "/shop", component: () => import("pages/shopping/Shopping.vue") },
