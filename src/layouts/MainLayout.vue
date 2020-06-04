@@ -156,8 +156,8 @@ export default {
 
   created() {
     console.log("created");
-    if (this.$session.get("mbNum")) {
-      console.log("this.$session.get('mbNum')@@@ ", this.$session.get("mbNum"));
+    if (sessionStorage.getItem("mbNum")) {
+      console.log("sessionStorage.getItem('mbNum')@@@ ", sessionStorage.getItem("mbNum"));
       this.isLogin = true;
     }
     console.log("this.isLogin @@@ ", this.isLogin);
@@ -174,7 +174,7 @@ export default {
   methods: {
     goLogout() {
       console.log("로그아웃을 해보자");
-      this.$session.clear();
+      sessionStorage.clear();
       alert("로그아웃했어요");
     }
   }

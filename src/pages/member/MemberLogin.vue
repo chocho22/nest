@@ -76,9 +76,9 @@ export default {
           console.log("success!! ", response);
           if (response.data.success === "Y") {
             alert("로그인 성공!!");
-            this.$session.set("mbNum", response.data.loginMember.mbNum);
-            this.$session.set("mbId", response.data.loginMember.mbId);
-            this.$session.set("mbNick", response.data.loginMember.mbNick);
+            sessionStorage.setItem("mbNum", response.data.loginMember.mbNum);
+            sessionStorage.setItem("mbId", response.data.loginMember.mbId);
+            sessionStorage.setItem("mbNick", response.data.loginMember.mbNick);
             // this.isLogin = true;
             this.goMain();
           } else {
