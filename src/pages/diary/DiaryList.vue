@@ -30,19 +30,19 @@
         </div>
         <div class="q-pa-md float-left vertical-bottom" style="width: 43%;">
           <div class="float-left vertical-bottom">
-            <!-- TODO 얘 크기좀 줄이고싶은데 방법이 없나... -->
             <q-input
+              dense
               filled
               v-model="srchStDate"
               mask="date"
               :rules="['srchStDate']"
               class="float-left vertical-bottom"
+              style="width: 150px;"
             >
               <template v-slot:append>
                 <q-icon name="event" class="cursor-pointer">
-                  <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                    <!-- TODO 얘는 왜 선택을 해도 안닫힐까? end date는 닫히는데... -->
-                    <q-date v-model="srchStDate" @input="() => $refs.qDateProxy.hide()" today-btn />
+                  <q-popup-proxy ref="startDate" transition-show="scale" transition-hide="scale">
+                    <q-date v-model="srchStDate" @input="() => $refs.startDate.hide()" today-btn />
                   </q-popup-proxy>
                 </q-icon>
               </template>
@@ -50,16 +50,18 @@
           </div>
           <div class="float-left vertical-bottom">
             <q-input
+              dense
               filled
               v-model="srchEndDate"
               mask="date"
               :rules="['srchEndDate']"
               class="float-left vertical-bottom"
+              style="width: 150px;"
             >
               <template v-slot:append>
                 <q-icon name="event" class="cursor-pointer">
-                  <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                    <q-date v-model="srchEndDate" @input="() => $refs.qDateProxy.hide()" today-btn />
+                  <q-popup-proxy ref="endDate" transition-show="scale" transition-hide="scale">
+                    <q-date v-model="srchEndDate" @input="() => $refs.endDate.hide()" today-btn />
                   </q-popup-proxy>
                 </q-icon>
               </template>
@@ -87,6 +89,9 @@ import axios from "axios";
 export default {
   name: "PageIndex",
   created() {
+    this.$nextTick(() => {
+      console.log('refs::::::::', this.$refs.startDate);
+    });
     // console.log(this.$route.params);
     this.result = this.getBoardList();
     console.log("this.result ::: ", this.result);

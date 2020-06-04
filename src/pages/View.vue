@@ -121,7 +121,7 @@ export default {
 
     goModify(bdNum) {
       console.log("bdNum !!! ", bdNum);
-      this.$router.push("/modify").catch(err => console.error(err));
+      this.$router.push(`/modify/blabla/${bdNum}`).catch(err => console.error(err));
       // console.log(this.$router);
       // this.$router.push({
       //   // name: "modify",

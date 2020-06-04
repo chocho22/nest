@@ -1,15 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import VueSession from "vue-session";
 
 import routes from "./routes";
 
 Vue.use(VueRouter);
-
-var sessionOptions = {
-  persist: true
-};
-Vue.use(VueSession, sessionOptions);
 
 /*
  * If not building with SSR mode, you can
@@ -19,7 +13,6 @@ Vue.use(VueSession, sessionOptions);
  * async/await or return a Promise which resolves
  * with the Router instance.
  */
-
 export default function(/* { store, ssrContext } */) {
   const Router = new VueRouter({
     scrollBehavior: () => ({ x: 0, y: 0 }),
@@ -29,6 +22,12 @@ export default function(/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> publicPath
     mode: "history",
     base: process.env.VUE_ROUTER_BASE
+  });
+  Router.beforeEach((to, from, next) => {
+    console.log('to:', to);
+    console.log('from:', from);
+    sessionStorage.setItem('a:', '123');
+    next();
   });
 
   return Router;

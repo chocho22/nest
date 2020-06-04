@@ -33,6 +33,8 @@
             to="/login"
           />
         </div>
+        <!-- TODO isLogin이 바로바로 바뀌게 하려면 vue x 라는 라이브러리를 쓰는게 좋다고 한다.
+          computed도 써야한다고 한다. 음..... -->
         <div
           style="position: absolute; right: 20px; bottom: 5px;"
           v-else-if="isLogin"
@@ -142,6 +144,7 @@
 </template>
 
 <script>
+/* eslint-disable vue/no-side-effects-in-computed-properties */
 // import EssentialLink from 'components/EssentialLink'
 
 export default {
@@ -179,7 +182,7 @@ export default {
 </script>
 
 <style lang="stylus">
-template {
+html, body {
   height: 100%;
 }
 
