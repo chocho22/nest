@@ -2,8 +2,19 @@
   <div class="q-px-md q-pb-md q-mx-md q-mb-md">
     <div class="q-pa-md q-ma-md q-mb-xl" style="width: 100%;">
       <div class="float-left vertical-bottom" style="width: 100%;">
-        <q-input v-model="mbId" placeholder="ID를 입력해주세요."></q-input>
-        <q-input type="password" v-model="mbPwd" placeholder="비밀번호를 입력해주세요."></q-input>
+        <div class="q-pa-sm float-left vertical-bottom" style="width: 100%;">
+          ID
+          <q-input v-model="mbId" placeholder="ID를 입력해주세요."></q-input>
+        </div>
+
+        <div class="q-pa-sm float-left vertical-bottom" style="width: 100%;">
+          비밀번호
+          <q-input
+            type="password"
+            v-model="mbPwd"
+            placeholder="비밀번호를 입력해주세요."
+          ></q-input>
+        </div>
       </div>
     </div>
     <div class="q-pa-md q-ma-md" style="width: 100%;">
@@ -13,7 +24,12 @@
         @click="memberLogin()"
         class="q-ma-lg q-mt-xl float-right"
       ></q-btn>
-      <q-btn color="primary" label="MAIN" class="q-ma-lg q-mt-xl float-left" @click="goMain()"></q-btn>
+      <q-btn
+        color="primary"
+        label="MAIN"
+        class="q-ma-lg q-mt-xl float-left"
+        @click="goMain()"
+      ></q-btn>
     </div>
   </div>
 </template>
@@ -31,6 +47,7 @@ export default {
     return {
       mbId: "",
       mbPwd: ""
+      // isLogin: false
     };
   },
 
@@ -38,26 +55,34 @@ export default {
     // vue 게시판 만들기 예제
     // https://codesandbox.io/s/3v0m1?file=/src/components/board/BoardCreate.vue
     memberLogin() {
-      console.log("이제 회원가입을 해보자");
+      console.log("이제 로그인을 해보자");
+
+      if (!this.mbId) {
+        alert("ID를 입력해주세요.");
+        return false;
+      }
+      if (!this.mbPwd) {
+        alert("비밀번호를 입력해주세요.");
+        return false;
+      }
+
       const datas = {
-        bdType: this.bdType.value,
-        bdTitle: this.bdTitle,
-        bdContent: this.bdContent,
         mbId: this.mbId,
-        mbNick: this.mbNick,
-        bdIp: this.bdIp,
-        bdRegDt: this.bdRegDt,
-        bdUdtDt: this.bdUdtDt
+        mbPwd: this.mbPwd
       };
       axios
-        .post("http://localhost:8083/board/add", datas)
+        .post("http://localhost:8083/member/login", datas)
         .then(response => {
           console.log("success!! ", response);
           if (response.data.success === "Y") {
-            alert("완료!!");
-            this.$router.go(-1);
+            alert("로그인 성공!!");
+            this.$session.set("mbNum", response.data.loginMember.mbNum);
+            this.$session.set("mbId", response.data.loginMember.mbId);
+            this.$session.set("mbNick", response.data.loginMember.mbNick);
+            // this.isLogin = true;
+            this.goMain();
           } else {
-            alert("못함!!ㅠㅠㅠ");
+            alert("로그인 못함!!ㅠㅠㅠ");
           }
         })
         .catch(e => {

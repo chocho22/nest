@@ -1,9 +1,15 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import VueSession from "vue-session";
 
 import routes from "./routes";
 
 Vue.use(VueRouter);
+
+var sessionOptions = {
+  persist: true
+};
+Vue.use(VueSession, sessionOptions);
 
 /*
  * If not building with SSR mode, you can

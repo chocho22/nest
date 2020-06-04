@@ -16,17 +16,45 @@
             <span style="text-align:center; margin-left:5px;">BLOG</span>
           </q-toolbar-title>
         </a>
-        <div style="position: absolute; right: 20px; bottom: 5px;">
-          <q-btn class="q-btn--flat" icon="person_add" label="join" to="/join" />
-          <q-btn class="q-btn--flat" icon="play_for_work" label="login" to="/login" />
+        <div
+          style="position: absolute; right: 20px; bottom: 5px;"
+          v-if="!isLogin"
+        >
+          <q-btn
+            class="q-btn--flat"
+            icon="person_add"
+            label="join"
+            to="/join"
+          />
+          <q-btn
+            class="q-btn--flat"
+            icon="play_for_work"
+            label="login"
+            to="/login"
+          />
         </div>
-        <div style="position: absolute; right: 20px; bottom: 5px;" hidden>
-          <q-btn class="q-btn--flat" icon="directions_run" label="logout" @click="goLogout()" />
+        <div
+          style="position: absolute; right: 20px; bottom: 5px;"
+          v-else-if="isLogin"
+        >
+          <q-btn
+            class="q-btn--flat"
+            icon="directions_run"
+            label="logout"
+            @click="goLogout()"
+          />
         </div>
       </q-toolbar>
     </q-header>
 
-    <q-drawer show-if-above v-model="left" side="left" bordered :width="250" :breakpoint="400">
+    <q-drawer
+      show-if-above
+      v-model="left"
+      side="left"
+      bordered
+      :width="250"
+      :breakpoint="400"
+    >
       <q-scroll-area
         style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd"
       >
@@ -97,13 +125,17 @@
         <q-toolbar-title>
           <q-avatar>
             <!-- <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg" /> -->
-            <q-icon name="emoji_people" />
-          </q-avatar>시리시우네
+            <q-icon name="emoji_people" /> </q-avatar
+          >시리시우네
         </q-toolbar-title>
       </q-toolbar>
     </q-footer>
 
-    <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
+    <q-page-scroller
+      position="bottom-right"
+      :scroll-offset="150"
+      :offset="[18, 18]"
+    >
       <q-btn fab icon="keyboard_arrow_up" color="primary" />
     </q-page-scroller>
   </q-layout>
@@ -119,16 +151,28 @@ export default {
     // EssentialLink
   },
 
+  created() {
+    console.log("created");
+    if (this.$session.get("mbNum")) {
+      console.log("this.$session.get('mbNum')@@@ ", this.$session.get("mbNum"));
+      this.isLogin = true;
+    }
+    console.log("this.isLogin @@@ ", this.isLogin);
+  },
+
   data() {
     return {
       // leftDrawerOpen: false,
-      left: false
+      left: false,
+      isLogin: false
     };
   },
 
   methods: {
     goLogout() {
       console.log("로그아웃을 해보자");
+      this.$session.clear();
+      alert("로그아웃했어요");
     }
   }
 };
