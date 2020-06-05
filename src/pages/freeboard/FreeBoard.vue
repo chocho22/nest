@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md q-ma-xl">
+  <div class="q-pa-md q-ma-lg">
     <div>
       <q-table
         title="Free Board"
@@ -11,7 +11,12 @@
     </div>
     <div style="width: 100%;">
       <div class="float-left vertical-bottom">
-        <q-select style="width: 80px;" v-model="srchTp" :options="options" label="search type"></q-select>
+        <q-select
+          style="width: 80px;"
+          v-model="srchTp"
+          :options="options"
+          label="search type"
+        ></q-select>
       </div>
       <div class="float-left vertical-bottom">
         <q-input v-model="srchType" style="width: 200px;"></q-input>
@@ -27,12 +32,20 @@
           >
             <template v-slot:append>
               <q-icon name="event" class="cursor-pointer">
-                <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                  <q-date v-model="srchStDate" @input="() => $refs.qDateProxy.hide()" today-btn />
+                <q-popup-proxy
+                  ref="qDateProxy"
+                  transition-show="scale"
+                  transition-hide="scale"
+                >
+                  <q-date
+                    v-model="srchStDate"
+                    @input="() => $refs.qDateProxy.hide()"
+                    today-btn
+                  />
                 </q-popup-proxy>
               </q-icon>
-            </template>
-          </q-input>~
+            </template> </q-input
+          >~
         </div>
         <div class="float-left vertical-bottom">
           <q-input
@@ -44,8 +57,16 @@
           >
             <template v-slot:append>
               <q-icon name="event" class="cursor-pointer">
-                <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                  <q-date v-model="srchEndDate" @input="() => $refs.qDateProxy.hide()" today-btn />
+                <q-popup-proxy
+                  ref="qDateProxy"
+                  transition-show="scale"
+                  transition-hide="scale"
+                >
+                  <q-date
+                    v-model="srchEndDate"
+                    @input="() => $refs.qDateProxy.hide()"
+                    today-btn
+                  />
                 </q-popup-proxy>
               </q-icon>
             </template>
@@ -56,7 +77,12 @@
         <q-btn label="SEARCH"></q-btn>
       </div>
     </div>
-    <q-btn color="secondary" label="POST" class="q-ma-auto q-mt-lg float-right" to="/write"></q-btn>
+    <q-btn
+      color="secondary"
+      label="POST"
+      class="q-ma-auto q-mt-lg float-right"
+      to="/write"
+    ></q-btn>
   </div>
 </template>
 

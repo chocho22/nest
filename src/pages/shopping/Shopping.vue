@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md q-ma-xl">
+  <div class="q-pa-md q-ma-lg">
     <div>
       <q-table
         title="Shopping"

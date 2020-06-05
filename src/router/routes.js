@@ -15,10 +15,6 @@ const routes = [
         // path: "/view",
         component: () => import("pages/View.vue")
       },
-      {
-        path: "/modify/blabla/:bdNum",
-        component: () => import("pages/Modify.vue")
-      },
       { path: "/shop", component: () => import("pages/shopping/Shopping.vue") },
       {
         path: "/free",

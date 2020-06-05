@@ -1,14 +1,24 @@
 // app global css in SCSS form
 
-.q-header {
-    // TODO header하고 footer 고정하기
+.q-layout {
+  //   position: relative;
+  margin: 0;
+  padding: 0;
 }
 
-// .float-left {
-//     .q-field__control-container {
-//         height: 24px !important;
-//     }
-//     .q-field__native {
-//         height: 24px !important;
-//     }
+// .q-header {
+//   position: relative;
+//   z-index: 1;
+//   height: 50px;
+// TODO header하고 footer 고정하기 이건..도대체 어떻게 해야하지....
 // }
+
+// .q-footer {
+//   height: 50px;
+// }
+
+.q-page-container {
+  min-height: 100%;
+  //   margin: -50px 0 -50px 0;
+  //   bottom: 50px;
+}

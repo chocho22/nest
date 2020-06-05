@@ -5,10 +5,6 @@
       <q-breadcrumbs></q-breadcrumbs>
     </div>-->
     <div class="q-pa-md q-ma-xl">
-      <!-- <q-page-container>
-        <q-page>{{ result }}</q-page>
-        <q-markup-table></q-markup-table>
-      </q-page-container>-->
       <div>
         <q-card flat class="my-card" v-if="result">
           <q-card-section>
@@ -22,14 +18,18 @@
           <q-card-section>
             <div>
               <span class="text-subtitle2">Comments</span>
-              <div class="float-right q-ma-auto q-px-lg" style="display: inline;">
+              <div
+                class="float-right q-ma-auto q-px-lg"
+                style="display: inline;"
+              >
                 <q-btn
                   class="q-mr-xl"
                   style="bottom: 10px;"
                   color="secondary"
                   icon="thumb_up_alt"
                   @click="cntBdLike(result.bdNum)"
-                >LIKE {{ result.bdLike }}</q-btn>
+                  >LIKE {{ result.bdLike }}</q-btn
+                >
                 <span class="q-ml-lg q-mb-lg">조회 {{ result.bdView }}</span>
               </div>
             </div>
@@ -44,8 +44,7 @@
           <q-card-section class="q-pa-md" style="width: 100%; height: 100%;">
             <div class="float-left vertical-bottom q-pa-lg" style="width: 10%;">
               유저이름과
-              <br />썸네일
-              <br />입네다
+              <br />썸네일 <br />입네다
             </div>
             <q-input
               type="textarea"
@@ -54,14 +53,24 @@
               v-model="cmtContent"
               placeholder="댓글을 입력해 주세요."
             ></q-input>
-            <q-btn class="float-left q-pa-lg vertical-bottom" flat label="REPLY"></q-btn>
+            <q-btn
+              class="float-left q-pa-lg vertical-bottom"
+              flat
+              label="REPLY"
+            ></q-btn>
           </q-card-section>
         </q-card>
         <div style="width: 100%;">
-          <q-btn class="float-right q-ma-lg primary" label="LIST" @click="goToList(result.bdType)"></q-btn>
-          <q-btn class="float-right q-ma-lg" label="MODIFY" @click="goModify(result.bdNum)"></q-btn>
-          <!-- <q-btn class="float-right q-ma-lg" label="MODIFY2" @click="goModify2(result.bdNum)"></q-btn> -->
-          <q-btn class="float-right q-ma-lg" label="DELETE" @click="deleteBoard(result.bdNum)"></q-btn>
+          <q-btn
+            class="float-right q-ma-lg primary"
+            label="LIST"
+            @click="goToList(result.bdType)"
+          ></q-btn>
+          <q-btn
+            class="float-right q-ma-lg"
+            label="DELETE"
+            @click="deleteBoard(result.bdNum)"
+          ></q-btn>
         </div>
       </div>
     </div>
@@ -118,30 +127,6 @@ export default {
       }
       this.$router.push(listType).catch(err => console.log(err));
     },
-
-    goModify(bdNum) {
-      console.log("bdNum !!! ", bdNum);
-      this.$router.push(`/modify/blabla/${bdNum}`).catch(err => console.error(err));
-      // console.log(this.$router);
-      // this.$router.push({
-      //   // name: "modify",
-      //   // params: { bdNum: bdNum }
-      //   path: `/modify/${bdNum}`
-      //   // path: `/`
-      //   // path: `/about`
-      //   // next() {}
-      // });
-    },
-
-    // goModify2(bdNum) {
-    //   console.log("bdNum !!! ", bdNum);
-    //   console.log(this.$router);
-    //   this.$router.push({
-    //     // path: `/modify/${bdNum}`
-    //     path: `/`
-    //   });
-    //   console.log(this.$router);
-    // },
 
     deleteBoard(boardNum) {
       console.log("boardNum :: ", boardNum);

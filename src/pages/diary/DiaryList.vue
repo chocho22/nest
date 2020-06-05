@@ -4,8 +4,8 @@
       <h3>Diary</h3>
       <q-breadcrumbs></q-breadcrumbs>
     </div>-->
-    <div class="q-pa-md q-ma-xl">
-      <div>
+    <div class="q-pa-md q-ma-lg">
+      <div style="width: 100%;">
         <q-table
           title="Diary"
           :data="result"
@@ -16,19 +16,20 @@
           @row-click="onRowClick"
         />
       </div>
-      <div class="search" style="width: 100%;">
-        <div class="float-left vertical-bottom" style="width: 10%;">
+      <!-- TODO 얘는 왜 높이가 0일까?? -->
+      <div style="width: 100%;">
+        <div class="float-left vertical-bottom" style="width: 100px;">
           <q-select
-            style="min-width: 80px;"
+            style="width: 100px;"
             v-model="srchTp"
             :options="options"
             label="search type"
           ></q-select>
         </div>
-        <div class="float-left vertical-bottom" style="width: 20%;">
+        <div class="float-left vertical-bottom" style="width: 200px;">
           <q-input v-model="srchType"></q-input>
         </div>
-        <div class="q-pa-md float-left vertical-bottom" style="width: 43%;">
+        <div class="q-pa-md float-left vertical-bottom">
           <div class="float-left vertical-bottom">
             <q-input
               dense
@@ -37,16 +38,24 @@
               mask="date"
               :rules="['srchStDate']"
               class="float-left vertical-bottom"
-              style="width: 150px;"
+              style="width: 140px;"
             >
               <template v-slot:append>
                 <q-icon name="event" class="cursor-pointer">
-                  <q-popup-proxy ref="startDate" transition-show="scale" transition-hide="scale">
-                    <q-date v-model="srchStDate" @input="() => $refs.startDate.hide()" today-btn />
+                  <q-popup-proxy
+                    ref="startDate"
+                    transition-show="scale"
+                    transition-hide="scale"
+                  >
+                    <q-date
+                      v-model="srchStDate"
+                      @input="() => $refs.startDate.hide()"
+                      today-btn
+                    />
                   </q-popup-proxy>
                 </q-icon>
-              </template>
-            </q-input>~
+              </template> </q-input
+            >~
           </div>
           <div class="float-left vertical-bottom">
             <q-input
@@ -56,29 +65,40 @@
               mask="date"
               :rules="['srchEndDate']"
               class="float-left vertical-bottom"
-              style="width: 150px;"
+              style="width: 140px;"
             >
               <template v-slot:append>
                 <q-icon name="event" class="cursor-pointer">
-                  <q-popup-proxy ref="endDate" transition-show="scale" transition-hide="scale">
-                    <q-date v-model="srchEndDate" @input="() => $refs.endDate.hide()" today-btn />
+                  <q-popup-proxy
+                    ref="endDate"
+                    transition-show="scale"
+                    transition-hide="scale"
+                  >
+                    <q-date
+                      v-model="srchEndDate"
+                      @input="() => $refs.endDate.hide()"
+                      today-btn
+                    />
                   </q-popup-proxy>
                 </q-icon>
               </template>
             </q-input>
           </div>
         </div>
-        <div class="q-mt-lg float-left vertical-bottom">
-          <q-btn label="SEARCH"></q-btn>
+        <div
+          class="q-pa-md float-left vertical-bottom"
+          style="display: inline-block;"
+        >
+          <q-btn class="q-mx-md" label="SEARCH"></q-btn>
+          <q-btn
+            class="q-mx-xl"
+            color="secondary"
+            label="POST"
+            to="/write"
+          ></q-btn>
         </div>
       </div>
-      <q-btn color="secondary" label="POST" class="q-ma-auto q-mt-lg float-right" to="/write"></q-btn>
-      <q-btn
-        color="secondary"
-        label="MODIFY3"
-        class="q-ma-auto q-mt-lg float-right"
-        @clicik="goModifyPage()"
-      ></q-btn>
+      <div></div>
     </div>
   </div>
 </template>
@@ -90,7 +110,7 @@ export default {
   name: "PageIndex",
   created() {
     this.$nextTick(() => {
-      console.log('refs::::::::', this.$refs.startDate);
+      console.log("refs::::::::", this.$refs.startDate);
     });
     // console.log(this.$route.params);
     this.result = this.getBoardList();
@@ -198,19 +218,6 @@ export default {
         path: `/view/${row.bdNum}`
       });
       console.log(this.$router);
-    },
-    goModifyPage() {
-      // this.$router.go("/about");
-      console.log(this.$router);
-
-      this.$router.push({
-        // name: "modify",
-        // params: { bdNum: 14 }
-        path: `/modify`
-        // path: `/about`
-        // next() {}
-      });
-      // console.log(this.$router);
     }
   }
 };

@@ -7,7 +7,11 @@
         <div>시리1</div>
       </q-timeline-entry>
 
-      <q-timeline-entry title="시우1" subtitle="February 21, 1986" icon="delete">
+      <q-timeline-entry
+        title="시우1"
+        subtitle="February 21, 1986"
+        icon="delete"
+      >
         <div>시우1</div>
       </q-timeline-entry>
 
@@ -25,7 +29,12 @@
         <div>시우2</div>
       </q-timeline-entry>
 
-      <q-timeline-entry title="시우3" subtitle="February 22, 1986" color="orange" icon="done_all">
+      <q-timeline-entry
+        title="시우3"
+        subtitle="February 22, 1986"
+        color="orange"
+        icon="done_all"
+      >
         <div>시우3</div>
       </q-timeline-entry>
 
@@ -44,10 +53,21 @@
 export default {
   name: "PageIndex",
   created() {
+    if (sessionStorage.getItem("mbNum")) {
+      console.log(
+        "sessionStorage.getItem('mbNum')@@@ ",
+        sessionStorage.getItem("mbNum")
+      );
+      this.isLogin = true;
+    }
     console.log(this.$route.params);
+  },
+  data() {
+    return {
+      isLogin: false
+    };
   }
 };
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

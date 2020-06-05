@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh LpR fff">
-    <q-header elevated class="bg-cyan-8 text-white">
+    <q-header reveal elevated class="bg-cyan-8 text-white">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="left = !left" />
         <a
@@ -122,7 +122,7 @@
       <router-view />
     </q-page-container>
 
-    <q-footer elevated class="bg-grey-8 text-white">
+    <q-footer reveal elevated class="bg-grey-8 text-white">
       <q-toolbar>
         <q-toolbar-title>
           <q-avatar>
@@ -157,7 +157,10 @@ export default {
   created() {
     console.log("created");
     if (sessionStorage.getItem("mbNum")) {
-      console.log("sessionStorage.getItem('mbNum')@@@ ", sessionStorage.getItem("mbNum"));
+      console.log(
+        "sessionStorage.getItem('mbNum')@@@ ",
+        sessionStorage.getItem("mbNum")
+      );
       this.isLogin = true;
     }
     console.log("this.isLogin @@@ ", this.isLogin);
@@ -176,26 +179,10 @@ export default {
       console.log("로그아웃을 해보자");
       sessionStorage.clear();
       alert("로그아웃했어요");
+      this.isLogin = false;
     }
   }
 };
 </script>
 
-<style lang="stylus">
-html, body {
-  height: 100%;
-}
-
-q-header {
-  height: 50px;
-}
-
-q-footer {
-  height: 50px;
-}
-
-q-page-container {
-  height: 100%;
-  margin: 50px 0 50px 0;
-}
-</style>
+<style lang="stylus"></style>

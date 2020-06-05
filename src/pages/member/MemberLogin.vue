@@ -79,7 +79,7 @@ export default {
             sessionStorage.setItem("mbNum", response.data.loginMember.mbNum);
             sessionStorage.setItem("mbId", response.data.loginMember.mbId);
             sessionStorage.setItem("mbNick", response.data.loginMember.mbNick);
-            // this.isLogin = true;
+            this.isLogin = true;
             this.goMain();
           } else {
             alert("로그인 못함!!ㅠㅠㅠ");
